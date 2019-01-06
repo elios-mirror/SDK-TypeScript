@@ -1,5 +1,5 @@
 {
-  "name": "elios",
+  "name": "@elios/elios",
   "version": "1.0.0",
   "description": "The elios.d.ts node module",
   "scripts": {
