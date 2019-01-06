@@ -1,4 +1,3 @@
-
 declare module 'elios' {
 
     export interface Module {
@@ -28,7 +27,6 @@ declare module 'elios' {
          */
         stop: () => void;
     }
-
 
     export interface Widget {
         id: string;
