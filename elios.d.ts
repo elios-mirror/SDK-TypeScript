@@ -1,4 +1,4 @@
-declare module 'elios' {
+declare module 'elios-sdk' {
 
     export interface Module {
 
@@ -36,5 +36,11 @@ declare module 'elios' {
     export interface Controller {
         createWidget(args: {}): Widget;
     }
+}
 
+/**
+ * @class BehaviorSubject<T>
+ */
+declare class BehaviorSubject<T> {
+    next(value: T): void;
 }
