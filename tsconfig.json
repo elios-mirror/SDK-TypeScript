@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs"
+      "target": "es5",
+      "module": "commonjs",
+      "declaration": true,
+      "outDir": "./lib",
+      "strict": true
     },
-    "exclude": [
-        "node_modules",
-        "elios.d.ts",
-        "typings"
-    ]
-}
+    "include": ["src"],
+    "exclude": ["node_modules", "**/__tests__/*"]
+  }
