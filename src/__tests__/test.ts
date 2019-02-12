@@ -1,5 +1,9 @@
-import { Greeter } from '../index';
+import Elios from '../index';
 
 test('My Greeter', () => {
-  expect(Greeter('Carl')).toBe('Hello Carl');
+  const elios = new Elios();
+
+  elios.testFoo().then(data => {
+    expect(data).toBe('__boopbar');
+  });
 });
