@@ -3,7 +3,12 @@ import Elios from '../index';
 test('My Greeter', () => {
   const elios = new Elios();
 
-  elios.testFoo().then(data => {
-    expect(data).toBe('__boopbar');
-  });
+  const widget = elios.createWidget();
+  widget.html('hello');
+  setTimeout(() => {
+    widget.html('hello2');
+    setTimeout(() => {
+      elios.close();
+    }, 1000);
+  }, 1000);
 });
