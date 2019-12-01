@@ -1,15 +1,14 @@
-import { createConnection, EliosProtocol } from 'elios-protocol';
+import { createConnection } from 'elios-protocol';
 import * as fs from "fs";
 import { join } from 'path';
+import { Subject } from 'rxjs';
 import EliosWidget from "./widget";
-
-
 
 /*
  * File Created: Sunday, 13th January 2019
  * Author: HUBERT Léo
  * -----
- * Last Modified: Wednesday, 27th November 2019
+ * Last Modified: Sunday, 1st December 2019
  * Modified By: HUBERT Léo
  * -----
  * Copyright - 2019 HUBERT Léo
@@ -23,7 +22,7 @@ export default class Sdk {
 
   private connection: any;
 
-  private resolve: any = null;
+  private resolve: Subject<any> = new Subject<any>();
 
   constructor() {
     let configPath = 'elios.yml';
@@ -37,7 +36,7 @@ export default class Sdk {
     this.connection.receive((data: string, senderId: number, commandType: number, reply: (msg: string, cmd: number) => {}) => {
       switch (commandType) {
         case 5:
-          this.resolve(JSON.parse(data));
+          this.resolve.next(JSON.parse(data));
           break;
       }
     });
@@ -52,9 +51,7 @@ export default class Sdk {
   }
 
   public config() {
-    return new Promise((resolve) => {
-      this.connection.send('', 4);
-      this.resolve = resolve;
-    });
+    this.connection.send('', 4);
+    return this.resolve;
   }
 }
